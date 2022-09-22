@@ -1,11 +1,6 @@
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:google_ml_vision/google_ml_vision.dart';
 import 'dart:ui' as ui;
-
 
 class FacePainter extends CustomPainter {
   final ui.Image image;
@@ -22,10 +17,14 @@ class FacePainter extends CustomPainter {
   void paint(ui.Canvas canvas, ui.Size size) {
     final Paint paint = Paint()
       ..style = PaintingStyle.stroke
-      ..color = Colors.red;
+      ..color = const Color(0XFFFFDD00);
     paint.strokeWidth = 7;
 
-    canvas.drawImage(image, Offset.zero, Paint(),);
+    canvas.drawImage(
+      image,
+      Offset.zero,
+      Paint(),
+    );
 
     for (var i = 0; i < faces.length; i++) {
       canvas.drawRect(rects[i], paint);
@@ -33,6 +32,7 @@ class FacePainter extends CustomPainter {
   }
 
   @override
+  // ignore: avoid_renaming_method_parameters
   bool shouldRepaint(FacePainter old) {
     return image != old.image || faces != old.faces;
   }

@@ -1,34 +1,34 @@
-
+import 'package:jaundice/forgot_password.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:Jaundice/shareable/button.dart';
-import 'package:Jaundice/HomePage.dart';
+import 'package:jaundice/shareable/button.dart';
+import 'package:jaundice/home.dart';
+import 'package:get/get.dart';
+import 'package:string_validator/string_validator.dart';
 
 import './text_field.dart';
 
-
-
 class AppForm extends StatefulWidget {
-  final  AnimationController?  formController , formButtonController;
+  final AnimationController? formController, formButtonController;
 
-  final  Animation<double>?  formOpacityAnimation , buttonSlideAnimation;
+  final Animation<double>? formOpacityAnimation, buttonSlideAnimation;
 
-   const AppForm(
-      {
-        Key? key ,
-        required this.formOpacityAnimation ,
-        required this.buttonSlideAnimation ,
-        required this.formButtonController ,
-        required this.formController
-  }
-  ) : super(key: key);
+  const AppForm(
+      {Key? key,
+      required this.formOpacityAnimation,
+      required this.buttonSlideAnimation,
+      required this.formButtonController,
+      required this.formController})
+      : super(key: key);
   @override
   AppFormState createState() => AppFormState();
 }
 
 class AppFormState extends State<AppForm> with TickerProviderStateMixin {
   bool isLogin = true;
-  late TextEditingController emailController , passwordController , userNameController  ,fullNameController;
+  late TextEditingController emailController,
+      passwordController,
+      userNameController;
 
   @override
   void initState() {
@@ -36,15 +36,12 @@ class AppFormState extends State<AppForm> with TickerProviderStateMixin {
     emailController = TextEditingController();
     passwordController = TextEditingController();
     userNameController = TextEditingController();
-    fullNameController = TextEditingController();
   }
 
   @override
   void dispose() {
     super.dispose();
   }
-
-
 
   // Builds the Form Fields : UserName , Email , Password
   _buildFormFields() {
@@ -57,31 +54,24 @@ class AppFormState extends State<AppForm> with TickerProviderStateMixin {
             Column(
               children: <Widget>[
                 AppTextField(
-                  key : UniqueKey(),
-                  labelText: 'Full Name',
-                  controller: fullNameController,
-                  suffixIcon: const Icon(Icons.person , color: Colors.white,),
-                ),
-                AppTextField(
-                  key : UniqueKey(),
+                  key: UniqueKey(),
                   labelText: 'User name',
                   controller: userNameController,
-                  suffixIcon: const Icon(Icons.person , color: Colors.white),
+                  suffixIcon: const Icon(Icons.person, color: Colors.white),
                 ),
               ],
             ),
           AppTextField(
-              key : UniqueKey(),
-              labelText: 'Email or Username',
+              key: UniqueKey(),
+              labelText: 'Email',
               controller: emailController,
               suffixIcon: const Icon(
                 Icons.email_outlined,
                 color: Colors.white,
                 size: 20,
-              )
-          ),
+              )),
           AppTextField(
-              key : UniqueKey(),
+              key: UniqueKey(),
               labelText: 'Password',
               controller: passwordController,
               obscureText: true,
@@ -94,46 +84,52 @@ class AppFormState extends State<AppForm> with TickerProviderStateMixin {
             height: 30,
           ),
           if (isLogin)
-            const Text(
-              'Forgot Password',
-              style: TextStyle(color: Color(0XFFFFDD00)),
-            ),
+            GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ForgotPassword()));
+                },
+                child: const Text(
+                  'Forgot Password ',
+                  style: TextStyle(color: Color(0XFFFFDD00)),
+                )),
         ],
       ),
     );
   }
 
-
   // Shows Error Messages from FireBase
-  void _showErrorMessage(String error ){
+  void _showErrorMessage(String error) {
+    //error.split("]")[1].toString()
     final snackBar = SnackBar(
-      content:  Text(error.split("]")[1].toString() , style : const TextStyle( color : Colors.redAccent)),
+      content: Text(error.toString(),
+          style: const TextStyle(color: Colors.redAccent)),
       action: SnackBarAction(
-        label: " " ,
+        label: " ",
         textColor: Colors.red,
-        onPressed: () {  },
+        onPressed: () {
+          SnackbarController.closeCurrentSnackbar();
+        },
       ),
     );
     // and use it to show a SnackBar.
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
-
-  void _navigateToHomePage(){
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context)=> HomePage()));
+  void _navigateToHomePage() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const Home()));
   }
 
-
   _buildFormButton() {
-
     double buttonWidth = 100;
     return AnimatedBuilder(
         animation: widget.buttonSlideAnimation!,
         builder: (context, child) {
           return Transform(
-              transform:
-              Matrix4.translationValues(
+              transform: Matrix4.translationValues(
                   widget.buttonSlideAnimation!.value * 100.0, 0, 0),
               child: SizedBox(
                   height: buttonWidth,
@@ -144,42 +140,50 @@ class AppFormState extends State<AppForm> with TickerProviderStateMixin {
                         key: UniqueKey(),
                         backgroundColor: const Color(0XFFFFDD00),
                         tooltip: "Proceed to the next page",
-                        onButtonClick: () {
+                        onButtonClick: () async {
                           if (!isLogin) {
-                              FirebaseAuth.instance
-                                  .createUserWithEmailAndPassword(
+                            if (isLength(userNameController.text.toString(), 4))
+                              {
+                                FirebaseAuth.instance
+                                    .createUserWithEmailAndPassword(
                                   email: emailController.text.trim(),
-                                  password: passwordController.text.trim())
-                                  .then((value) => _navigateToHomePage())
-                                  .onError((error, stackTrace) =>
-                                  _showErrorMessage(error.toString())
-                              ).timeout((const Duration(seconds: 10)));
-
+                                  password: passwordController.text.trim(),
+                                )
+                                    .then((value) {
+                                  FirebaseAuth.instance.currentUser
+                                      ?.updateDisplayName(
+                                      userNameController.text.trim());
+                                  _navigateToHomePage();
+                                })
+                                    .catchError((error, stackTrace) =>
+                                // ignore: invalid_return_type_for_catch_error
+                                _showErrorMessage(error.toString()))
+                                    .timeout((const Duration(seconds: 10)));
+                              }
+                            else {
+                              _showErrorMessage("user name can't be less than 4 character");
                             }
-                          else {
-                            _navigateToHomePage();
-                          }
-                            FirebaseAuth.instance.signInWithEmailAndPassword(
-                                email: emailController.text.trim(),
-                                password: passwordController.text.trim()
-                            ).then((value) => _navigateToHomePage()
-                            ).onError((error, stackTrace) =>
-                                _showErrorMessage(error.toString())
-                            );
-                          },
-                          child: const Icon(
-                            Icons.arrow_forward, color: Color(0XFF000000),)
 
-                      )
-                  )
-              )
-          );
-        }
-          );
+                          } else {
+                            FirebaseAuth.instance
+                                .signInWithEmailAndPassword(
+                                    email: emailController.text.trim(),
+                                    password: passwordController.text.trim())
+                                .then((value) => _navigateToHomePage())
+                                .onError((error, stackTrace) =>
+                                    _showErrorMessage(error.toString()));
+                          }
+                        },
+                        size: 100,
+                        child: const Icon(
+                          Icons.arrow_forward,
+                          color: Color(0XFF000000),
+                        ),
+                      ))));
+        });
   }
 
-
-   _buildAuthNavigation() {
+  _buildAuthNavigation() {
     return Row(
       children: <Widget>[
         Text(
@@ -213,19 +217,17 @@ class AppFormState extends State<AppForm> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return SingleChildScrollView(
-        padding: const EdgeInsets.only(top: 200, left: 40, right: 40),
-        child:  Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            _buildAuthNavigation() ,
-            _buildFormFields(),
-            const SizedBox(height : 15),
-            _buildFormButton(),
-          ],
-        ),
+      padding: const EdgeInsets.only(top: 200, left: 40, right: 40),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: <Widget>[
+          _buildAuthNavigation(),
+          _buildFormFields(),
+          const SizedBox(height: 15),
+          _buildFormButton(),
+        ],
+      ),
     );
   }
 }
-

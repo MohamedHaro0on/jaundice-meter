@@ -1,2 +1,0 @@
-0 abnormal
-1 normal

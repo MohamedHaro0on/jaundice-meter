@@ -1,20 +1,29 @@
-<<<<<<< HEAD
-# first_app
+<h1> Jaundice Meter application. </h1>
+<br>
+<br> 
+this is a flutter application that accepts image  of new born child or a person and classfies that person  <br> 
+using machine learning allgorithms whether he/she is postive to jaundice or not.
 
-A new Flutter project.
+<br> <br>
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+<ul>
+<li> accepts images from the gallary or real time from the CAM </li>
+<li> carries out pre classfication check wether the entered image has only one face in it. </li>
+<li> makes a http request to the machine learning model deployed in heroku .</li>
+<li>allgorithms used in the machine learning model are KNN , SVM , Gradient Boosting , Random forest ( highest accuracy 91%) </li>
+<li>total data set images were 200 split between  infected children and normal children. ( Collected only from egyptian hospitals)</li>
+</ul>
 
-A few resources to get you started if this is your first Flutter project:
+Developed by :
+<ol>
+<li>Mohamed Ahmed Ali Haroon : <a href= " mohamedharoon286@gmail.com" > contact me </a> </li>
+<li> Nada Mohamed Abdelsatar </li> 
+<li> Arwa Saad </li>
+<li>Nada Ali </li>
+<li> Salma Aref . </li>
+<li> Mohamed Amiir Mowad </li>
+</ol>
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-=======
-# jaundice
->>>>>>> main
+<strong> Note : Works only on android devices </strong>

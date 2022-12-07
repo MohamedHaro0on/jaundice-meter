@@ -19,14 +19,14 @@ Developed by :
 
 Machine Learning Part : ( dataset , classfication )
 <ol>
-<li> Arwa Saad : <a href = "arwasaad812@gmail.com" > Contact Arwa </a></li>
-<li> Salma Aref  : <a href = "salmaaref20220@gmail.com"> Contact Salma </a> </li>
+<li> Arwa Saad : <a href = "mailto:arwasaad812@gmail.com" > Contact Arwa </a></li>
+<li> Salma Aref  : <a href = "mailto:salmaaref20220@gmail.com"> Contact Salma </a> </li>
 <li> Nada Mohamed Abdelsatar </li> 
 </ol>
 Second Flutter Part : ( App , Face Recognition  , Design , firebase)
 <ol>
-<li>Mohamed Ahmed Ali Haroon : <a href= "mohamedharoon286@gmail.com" > contact me </a> </li>
-<li>Nada Ali hussien : <a href = "nada.alii.hussien800@gmail.com"> Contact Nada </a></li>
+<li>Mohamed Ahmed Ali Haroon : <a href= "mailto:mohamedharoon286@gmail.com" > contact me </a> </li>
+<li>Nada Ali hussien : <a href = "mailto:nada.alii.hussien800@gmail.com"> Contact Nada </a></li>
 <li> Mohamed Amiir Mowad </li>
 </ol>
 
@@ -35,6 +35,7 @@ Second Flutter Part : ( App , Face Recognition  , Design , firebase)
 <br/>
 
 <h2> I would like to thank my supervisor, Dr. Ehab Ibrahim , for the patient guidance, encouragement
-and advice he has provided throughout my time as his student. <a href="engehab245@gmail.com"> Contact Dr.Ehab </a> </h2>
+and advice he has provided throughout my time as his student. <a href="mailto:engehab245@gmail.com"> Contact Dr.Ehab </a> </h2>
+<br/><br/>
 
 <h3> Note : Works only on android devices </h3>

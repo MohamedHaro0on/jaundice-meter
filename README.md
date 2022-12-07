@@ -16,14 +16,25 @@ using machine learning allgorithms whether he/she is postive to jaundice or not.
 </ul>
 
 Developed by :
+
+Machine Learning Part : ( dataset , classfication )
 <ol>
-<li>Mohamed Ahmed Ali Haroon : <a href= " mohamedharoon286@gmail.com" > contact me </a> </li>
+<li> Arwa Saad : <a href = "arwasaad812@gmail.com" > Contact Arwa </a></li>
+<li> Salma Aref  : <a href = "salmaaref20220@gmail.com"> Contact Salma </a> </li>
 <li> Nada Mohamed Abdelsatar </li> 
-<li> Arwa Saad </li>
-<li>Nada Ali </li>
-<li> Salma Aref . </li>
+<ol>
+Second Flutter Part : ( App , Face Recognition  , Design , firebase)
+<ol>
+<li>Mohamed Ahmed Ali Haroon : <a href= "mohamedharoon286@gmail.com" > contact me </a> </li>
+<li>Nada Ali hussien : <a href = "nada.alii.hussien800@gmail.com"> Contact Nada </a></li>
 <li> Mohamed Amiir Mowad </li>
 </ol>
 
+<br/>
+<br/>
+<br/>
 
-<strong> Note : Works only on android devices </strong>
+<h2> I would like to thank my supervisor, Dr. Ehab Ibrahim , for the patient guidance, encouragement
+and advice he has provided throughout my time as his student. <a href="engehab245@gmail.com"> Contact Dr.Ehab </a> </h2>
+
+<h3> Note : Works only on android devices </h3>

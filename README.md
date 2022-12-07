@@ -22,7 +22,7 @@ Machine Learning Part : ( dataset , classfication )
 <li> Arwa Saad : <a href = "arwasaad812@gmail.com" > Contact Arwa </a></li>
 <li> Salma Aref  : <a href = "salmaaref20220@gmail.com"> Contact Salma </a> </li>
 <li> Nada Mohamed Abdelsatar </li> 
-<ol>
+</ol>
 Second Flutter Part : ( App , Face Recognition  , Design , firebase)
 <ol>
 <li>Mohamed Ahmed Ali Haroon : <a href= "mohamedharoon286@gmail.com" > contact me </a> </li>
